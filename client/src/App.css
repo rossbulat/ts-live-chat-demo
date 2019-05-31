@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 0px 20px;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 50s linear;
+  display: block;
+  height: 25vmin;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.App-chatbox {
+  margin: 2em auto;
+  max-height: 300px;
+  overflow-y: scroll;
+  text-align: left;
+  max-width: 500px;
+  width: 100%;
+}
+
+.App-chatbox p {
+  background: rgba(0,0,0,0.25);
+  border-radius: 1em;
+  padding: 0.6em 1em;
+  font-size: 14px;
+}
+
+input {
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 0.25em;
+  color: #fff;
+  margin: 0.5em;
+  padding: 10px;
+  max-width: 500px;
+  width: 100%;
+  font-size: 15px;
+}
+
+::placeholder {
+  color: #eee;
+}
+
+button {
+  background: none;
+  border: none;
+  color: #61dafb;
+  cursor: pointer;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

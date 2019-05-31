@@ -1,0 +1,24 @@
+{
+  "name": "ts-livechat-2",
+  "version": "1.0.0",
+  "description": "Live Chat based on ts-node",
+  "main": "index.js",
+  "author": "Ross Bulat",
+  "license": "MIT",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "prod": "tsc && node ./dist/server.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "@types/socket.io": "^2.1.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0",
+    "typescript": "^3.4.5"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.39"
+  }
+}
