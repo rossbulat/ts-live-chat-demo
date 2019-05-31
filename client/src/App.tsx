@@ -1,30 +1,70 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ChatContext } from './ChatContext';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
+class App extends React.Component {
+  static contextType = ChatContext;
 
-      <div className="App-chatbox">
-        {/* Chat messages here */}
-      </div>
+  state = {
+    messages: ['Welcome! Type a message and press Send Message to continue the chat.'],
+    input: ''
+  }
 
-      <p>Type a message and press <b>Send Message</b> to add to the chat.</p>
+  componentDidMount () {
+    const observable = this.context.onMessage();
 
-      <textarea
-        className="App-Textarea"
-        placeholder="Type your messsage here..."
-      >
-      </textarea>
-      <p>
-        <button onClick={() => { }}>
-          Send Message
+    observable.subscribe((val: string) => {
+      let messages = this.state.messages;
+      messages.push(val);
+      this.setState({ messages: messages });
+    });
+  }
+
+  componentWillUnmount () {
+    this.context.disconnect();
+  }
+
+  render () {
+
+    const updateInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+      this.setState({ input: e.target.value });
+    }
+
+    const handleMessage = (): void => {
+      if (this.state.input !== '') {
+        this.context.send(this.state.input);
+        this.setState({ input: '' });
+      }
+    };
+
+    let msgIndex = 0;
+    return (
+      <div className="App">
+        <img src={logo} className="App-logo" alt="logo" />
+
+        <div className="App-chatbox">
+          {this.state.messages.map((msg: string) => {
+            msgIndex++;
+            return (
+              <p key={msgIndex}>{msg}</p>
+            );
+          })}
+        </div>
+        <input
+          className="App-Textarea"
+          placeholder="Type your messsage here..."
+          onChange={updateInput}
+          value={this.state.input}
+        />
+        <p>
+          <button onClick={() => { handleMessage() }}>
+            Send Message
           </button>
-      </p>
-    </div>
-  );
+        </p>
+      </div>
+    );
+  }
 }
 
 export default App;
