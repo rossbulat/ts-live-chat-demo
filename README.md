@@ -1,4 +1,5 @@
-# Typescript Live Chat Demo: Express, React, Socket.io, RxJS
+# Typescript Live Chat Demo
+### Express, React, Socket.io, RxJS
 
 ### This repository coincides with a walkthrough available to read on Medium here [coming soon].
 
