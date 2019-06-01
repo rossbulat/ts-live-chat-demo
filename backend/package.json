@@ -6,7 +6,6 @@
   "author": "Ross Bulat",
   "license": "MIT",
   "scripts": {
-    "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
     "prod": "tsc && node ./dist/server.js"
   },
