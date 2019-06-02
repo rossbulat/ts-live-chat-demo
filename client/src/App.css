@@ -27,11 +27,16 @@
   width: 100%;
 }
 
-.App-chatbox p {
+.App-chatbox > div {
   background: rgba(0,0,0,0.25);
   border-radius: 1em;
-  padding: 0.6em 1em;
+  padding: 0.25em 1em;
   font-size: 14px;
+  margin: 0.75em 0;
+}
+
+.App-chatbox p:first-child {
+ font-size: 12px;
 }
 
 input {

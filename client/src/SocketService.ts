@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { ChatMessage } from './types';
 import { fromEvent, Observable } from 'rxjs';
 
 export class SocketService {
@@ -17,7 +18,7 @@ export class SocketService {
   }
 
   // link message event to rxjs data source
-  public onMessage (): Observable<string> {
+  public onMessage (): Observable<ChatMessage> {
     return fromEvent(this.socket, 'message');
   }
 

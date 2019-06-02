@@ -1,22 +1,29 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ChatMessage, ChatState } from './types';
 import { ChatContext } from './ChatContext';
 
 class App extends React.Component {
   static contextType = ChatContext;
 
-  state = {
-    messages: ['Welcome! Type a message and press Send Message to continue the chat.'],
+  state: ChatState = {
+    messages: [
+      {
+        message: 'Welcome! Type a message and press Send Message to continue the chat.',
+        author: 'Bot'
+      }
+    ],
     input: ''
   }
 
   componentDidMount () {
     const observable = this.context.onMessage();
 
-    observable.subscribe((val: string) => {
+    observable.subscribe((m: ChatMessage) => {
       let messages = this.state.messages;
-      messages.push(val);
+
+      messages.push(m);
       this.setState({ messages: messages });
     });
   }
@@ -32,8 +39,14 @@ class App extends React.Component {
     }
 
     const handleMessage = (): void => {
+
+      const author: string = 'Ross';
+
       if (this.state.input !== '') {
-        this.context.send(this.state.input);
+        this.context.send({
+          message: this.state.input,
+          author: author
+        });
         this.setState({ input: '' });
       }
     };
@@ -44,10 +57,15 @@ class App extends React.Component {
         <img src={logo} className="App-logo" alt="logo" />
 
         <div className="App-chatbox">
-          {this.state.messages.map((msg: string) => {
+          {this.state.messages.map((msg: ChatMessage) => {
             msgIndex++;
             return (
-              <p key={msgIndex}>{msg}</p>
+              <div key={msgIndex}>
+                <p>{msg.author}</p>
+                <p>
+                  {msg.message}
+                </p>
+              </div>
             );
           })}
         </div>
