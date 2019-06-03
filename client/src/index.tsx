@@ -6,8 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { SocketService } from './SocketService';
 import { ChatContext } from './ChatContext';
 
-const chat = new SocketService()
-  .init();
+const chat = new SocketService();
 
 ReactDOM.render(
   <ChatContext.Provider value={chat}>

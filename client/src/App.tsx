@@ -18,6 +18,10 @@ class App extends React.Component {
   }
 
   componentDidMount () {
+
+    //initiate socket connection
+    this.context.init();
+
     const observable = this.context.onMessage();
 
     observable.subscribe((m: ChatMessage) => {

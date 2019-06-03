@@ -12,7 +12,7 @@ export class SocketService {
   }
 
   // send a message for the server to broadcast
-  public send (message: string): void {
+  public send (message: ChatMessage): void {
     console.log('emitting message: ' + message);
     this.socket.emit('message', message);
   }
